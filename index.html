@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICE Bridge Model Viewer</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="loader" id="loader">Loading model...</div>
+  <model-viewer
+    id="bridgeViewer"
+    bounds="tight"
+    enable-pan
+    src="ICE Bridge-SKPrender1.glb"
+    ios-src="ICE Bridge-SKPrender1.usdz"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    camera-controls
+    environment-image="neutral"
+    poster="poster.webp"
+    shadow-intensity="1"
+    exposure="1.2"
+    auto-rotate
+    interaction-prompt="none"
+    style="width: 100%; height: 600px;"
+  >
+    <div class="progress-bar" slot="progress-bar">
+      <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+      <img src="https://modelviewer.dev/shared-assets/icons/ar_icon.png" alt="AR icon" style="height:24px; vertical-align:middle;"> View in your space
+    </button>
+    <div id="ar-prompt">
+      <img src="https://modelviewer.dev/shared-assets/icons/hand.png" alt="AR hand prompt">
+    </div>
+
+    <!-- Multiple annotations -->
+    <button slot="hotspot-1" data-position="0.5m 0.5m 0.5m" data-normal="0 1 0" class="annotation">Bridge Deck</button>
+    <button slot="hotspot-2" data-position="-0.5m 0.5m 0.5m" data-normal="0 1 0" class="annotation">Support Beam</button>
+    <button slot="hotspot-3" data-position="0m 1m 0m" data-normal="0 1 0" class="annotation">Top View</button>
+  </model-viewer>
+
+  <!-- Camera preset buttons -->
+  <div class="camera-buttons">
+    <button onclick="setCamera(0, 1, 2)">Front View</button>
+    <button onclick="setCamera(2, 1, 0)">Side View</button>
+    <button onclick="setCamera(0, 3, 0)">Top View</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
